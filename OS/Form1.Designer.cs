@@ -29,19 +29,22 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.create_panel = new System.Windows.Forms.Panel();
+            this.nameText = new MetroFramework.Controls.MetroTextBox();
+            this.renameBtn = new MetroFramework.Controls.MetroTextBox.MetroTextButton();
+            this.formatBtn = new MetroFramework.Controls.MetroTextBox.MetroTextButton();
             this.dispBtn = new MetroFramework.Controls.MetroTextBox.MetroTextButton();
             this.listDisk = new MetroFramework.Controls.MetroComboBox();
             this.details = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.Label();
             this.progressbar = new CircularProgressBar.CircularProgressBar();
             this.content = new System.Windows.Forms.Panel();
-            this.formatBtn = new MetroFramework.Controls.MetroTextBox.MetroTextButton();
-            this.renameBtn = new MetroFramework.Controls.MetroTextBox.MetroTextButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.about = new System.Windows.Forms.PictureBox();
+            this.closeBtn = new System.Windows.Forms.PictureBox();
             this.create_panel.SuspendLayout();
             this.content.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.about)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -55,21 +58,10 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Disk Utility";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::OS.Properties.Resources.if_6___Cross_1815573;
-            this.pictureBox1.Location = new System.Drawing.Point(679, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.close_Click);
-            // 
             // create_panel
             // 
             this.create_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(37)))), ((int)(((byte)(59)))));
+            this.create_panel.Controls.Add(this.nameText);
             this.create_panel.Controls.Add(this.renameBtn);
             this.create_panel.Controls.Add(this.formatBtn);
             this.create_panel.Controls.Add(this.dispBtn);
@@ -83,6 +75,65 @@
             this.create_panel.TabIndex = 3;
             this.create_panel.Tag = "2";
             this.create_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.create_panel_Paint);
+            // 
+            // nameText
+            // 
+            // 
+            // 
+            // 
+            this.nameText.CustomButton.Font = new System.Drawing.Font("Ubuntu Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameText.CustomButton.Image = null;
+            this.nameText.CustomButton.Location = new System.Drawing.Point(148, 1);
+            this.nameText.CustomButton.Name = "";
+            this.nameText.CustomButton.Size = new System.Drawing.Size(31, 31);
+            this.nameText.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.nameText.CustomButton.TabIndex = 1;
+            this.nameText.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.nameText.CustomButton.UseSelectable = true;
+            this.nameText.CustomButton.Visible = false;
+            this.nameText.Lines = new string[] {
+        "Label"};
+            this.nameText.Location = new System.Drawing.Point(562, 89);
+            this.nameText.MaxLength = 32767;
+            this.nameText.Name = "nameText";
+            this.nameText.PasswordChar = '\0';
+            this.nameText.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.nameText.SelectedText = "";
+            this.nameText.SelectionLength = 0;
+            this.nameText.SelectionStart = 0;
+            this.nameText.Size = new System.Drawing.Size(136, 33);
+            this.nameText.Style = MetroFramework.MetroColorStyle.Black;
+            this.nameText.TabIndex = 7;
+            this.nameText.Text = "Label";
+            this.nameText.UseSelectable = true;
+            this.nameText.WaterMarkColor = System.Drawing.Color.Yellow;
+            this.nameText.WaterMarkFont = new System.Drawing.Font("Ubuntu Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // renameBtn
+            // 
+            this.renameBtn.Image = null;
+            this.renameBtn.Location = new System.Drawing.Point(562, 128);
+            this.renameBtn.Name = "renameBtn";
+            this.renameBtn.Size = new System.Drawing.Size(136, 34);
+            this.renameBtn.TabIndex = 6;
+            this.renameBtn.Text = "Rename Drive";
+            this.renameBtn.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.renameBtn.UseSelectable = true;
+            this.renameBtn.UseVisualStyleBackColor = true;
+            this.renameBtn.Click += new System.EventHandler(this.renameBtn_Click);
+            // 
+            // formatBtn
+            // 
+            this.formatBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.formatBtn.Image = null;
+            this.formatBtn.Location = new System.Drawing.Point(562, 192);
+            this.formatBtn.Name = "formatBtn";
+            this.formatBtn.Size = new System.Drawing.Size(136, 35);
+            this.formatBtn.TabIndex = 5;
+            this.formatBtn.Text = "Format Drive";
+            this.formatBtn.UseSelectable = true;
+            this.formatBtn.UseVisualStyleBackColor = false;
+            this.formatBtn.Click += new System.EventHandler(this.formatBtn_Click);
             // 
             // dispBtn
             // 
@@ -110,22 +161,22 @@
             // details
             // 
             this.details.AutoSize = true;
-            this.details.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.details.Font = new System.Drawing.Font("Ubuntu Mono", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.details.ForeColor = System.Drawing.Color.Gold;
             this.details.Location = new System.Drawing.Point(36, 214);
             this.details.Name = "details";
-            this.details.Size = new System.Drawing.Size(51, 17);
+            this.details.Size = new System.Drawing.Size(80, 22);
             this.details.TabIndex = 2;
             this.details.Text = "Details";
             // 
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name.Font = new System.Drawing.Font("Ubuntu Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.name.Location = new System.Drawing.Point(35, 193);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(66, 22);
+            this.name.Size = new System.Drawing.Size(58, 24);
             this.name.TabIndex = 0;
             this.name.Text = "Name";
             // 
@@ -173,30 +224,28 @@
             this.content.TabIndex = 2;
             this.content.Tag = "1";
             // 
-            // formatBtn
+            // about
             // 
-            this.formatBtn.Image = null;
-            this.formatBtn.Location = new System.Drawing.Point(562, 99);
-            this.formatBtn.Name = "formatBtn";
-            this.formatBtn.Size = new System.Drawing.Size(136, 35);
-            this.formatBtn.TabIndex = 5;
-            this.formatBtn.Text = "Format Drive";
-            this.formatBtn.UseSelectable = true;
-            this.formatBtn.UseVisualStyleBackColor = true;
-            this.formatBtn.Click += new System.EventHandler(this.formatBtn_Click);
+            this.about.Image = global::OS.Properties.Resources.globe;
+            this.about.Location = new System.Drawing.Point(653, 4);
+            this.about.Name = "about";
+            this.about.Size = new System.Drawing.Size(45, 33);
+            this.about.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.about.TabIndex = 5;
+            this.about.TabStop = false;
+            this.about.MouseClick += new System.Windows.Forms.MouseEventHandler(this.about_MouseClick);
             // 
-            // renameBtn
+            // closeBtn
             // 
-            this.renameBtn.Image = null;
-            this.renameBtn.Location = new System.Drawing.Point(562, 140);
-            this.renameBtn.Name = "renameBtn";
-            this.renameBtn.Size = new System.Drawing.Size(136, 34);
-            this.renameBtn.TabIndex = 6;
-            this.renameBtn.Text = "Rename Drive";
-            this.renameBtn.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.renameBtn.UseSelectable = true;
-            this.renameBtn.UseVisualStyleBackColor = true;
-            this.renameBtn.Click += new System.EventHandler(this.renameBtn_Click);
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.Image = global::OS.Properties.Resources.if_6___Cross_1815573;
+            this.closeBtn.Location = new System.Drawing.Point(700, 4);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(46, 33);
+            this.closeBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closeBtn.TabIndex = 3;
+            this.closeBtn.TabStop = false;
+            this.closeBtn.Click += new System.EventHandler(this.close_Click);
             // 
             // Form1
             // 
@@ -204,9 +253,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.ClientSize = new System.Drawing.Size(746, 381);
+            this.Controls.Add(this.about);
             this.Controls.Add(this.content);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.closeBtn);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -214,17 +264,18 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.create_panel.ResumeLayout(false);
             this.create_panel.PerformLayout();
             this.content.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.about)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox closeBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel content;
         private CircularProgressBar.CircularProgressBar progressbar;
@@ -235,6 +286,8 @@
         private MetroFramework.Controls.MetroTextBox.MetroTextButton dispBtn;
         private MetroFramework.Controls.MetroTextBox.MetroTextButton formatBtn;
         private MetroFramework.Controls.MetroTextBox.MetroTextButton renameBtn;
+        private MetroFramework.Controls.MetroTextBox nameText;
+        private System.Windows.Forms.PictureBox about;
     }
 }
 

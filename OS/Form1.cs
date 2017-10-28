@@ -19,6 +19,10 @@ namespace OS
         {
             InitializeComponent();
             getDrives();
+
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(about, "Visit Developer Site");
+            toolTip.SetToolTip(closeBtn, "Exit");
         }
         // Drive information acquisition
         private void getDrives()
@@ -36,9 +40,21 @@ namespace OS
                 
 
             }
-            // For null selection handling 
+            // For null selection handling  && initial values
             listDisk.SelectedIndex = 0;
-            
+
+            string initItem = drives[0].ToString();
+            name.Text = getLabel(initItem);
+            nameText.Text = getLabel(initItem);
+            details.Text = showInfo(initItem);
+
+            double percentage = (getAvailableSpace(initItem) / getTotalSpace(initItem));
+            percentage = percentage * 100;
+            int val = Convert.ToInt32(percentage);
+            progressbar.Value = val;
+            progressbar.Text = val + " %";
+            progressbar.Update();
+
 
         }
 
@@ -47,26 +63,27 @@ namespace OS
         private string showInfo(string item)
         {
 
-            string available_space = "", total_space = "", type = "", file_system = "", label = "";
+            string available_space = "", total_space = "", type = "", file_system = "", label = "",root="";
             string selected_drive = item;
             int percentage = 0;
             try
             {
                 DriveInfo info = new DriveInfo(selected_drive);
                 available_space = info.AvailableFreeSpace.ToString();
-                total_space = info.TotalFreeSpace.ToString();
+                total_space = info.TotalSize.ToString();
                 type = info.DriveType.ToString();
                 file_system = info.DriveFormat.ToString();
                 label = info.VolumeLabel.ToString();
 
+                root = info.RootDirectory.ToString();
                 percentage = int.Parse(available_space) / int.Parse(total_space) * 100;
-            
+
             }
             catch (Exception ex)
             {
 
             }
-            return "Free space: " + available_space + "\nTotal Sapace: " + total_space + "\nDrive type: " + type + "\nFile System: " + file_system;
+            return "Free space: " + available_space + " Bytes\nTotal Sapace: " + total_space + " Bytes\nDrive type: " + type + "\nFile System: " + file_system+"\nRoot Directory: "+ root;
         }
 
         private string getLabel(string drive)
@@ -174,6 +191,7 @@ namespace OS
         {
             string item = listDisk.SelectedItem.ToString();
             name.Text = getLabel(item);
+            nameText.Text = getLabel(item);
             details.Text = showInfo(item);
 
             double percentage = (getAvailableSpace(item) / getTotalSpace(item));
@@ -222,10 +240,19 @@ namespace OS
         // Rename drive
         public bool SetVolumeLabel(DriveInfo d,string newLabel)
         {
-            if (d.IsReady && d.DriveType == DriveType.Removable)
+            if (d.IsReady)
             {
-                d.VolumeLabel = newLabel;
-                return true;
+                try
+                {
+                    d.VolumeLabel = newLabel;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                   // Console.Write(ex.Message);
+                    return false;
+                }
+               
             }
             else
             {
@@ -237,43 +264,30 @@ namespace OS
         {
             string item = listDisk.SelectedItem.ToString();
             DriveInfo d = new DriveInfo(item);
+            string label = nameText.Text;
+            if(label==null)
+            {
+                label = "";
+            }
 
-            ShowDialog("Enter label","Change label");
-            bool res = SetVolumeLabel(d, "Noor");
+            bool res = SetVolumeLabel(d, label);
             if(res)
             {
                 MessageBox.Show("Drive Rename Successfull!");
             }
             else
             {
-                MessageBox.Show("Drive Rename blocked. Select a removable drive!");
+                MessageBox.Show("Volume labels can only be set for writable local volumes.");
 
             }
 
         }
 
-        public static string ShowDialog(string text, string caption)
+        private void about_MouseClick(object sender, MouseEventArgs e)
         {
-            Form prompt = new Form()
-            {
-                Width = 500,
-                Height = 150,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = caption,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
-            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 300 };
-            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-            confirmation.Click += (sender, e) => { prompt.Close(); };
-            prompt.Controls.Add(textBox);
-            prompt.Controls.Add(confirmation);
-            prompt.Controls.Add(textLabel);
-            prompt.AcceptButton = confirmation;
-
-            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+            System.Diagnostics.Process.Start("http://fsix.me");
         }
-
     }
+
 
 }

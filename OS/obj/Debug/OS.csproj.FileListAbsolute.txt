@@ -13,7 +13,6 @@ G:\Hello World !\C# projects\OS\OS\bin\Debug\MetroFramework.Fonts.dll
 G:\Hello World !\C# projects\OS\OS\bin\Debug\WinFormAnimation.dll
 G:\Hello World !\C# projects\OS\OS\bin\Debug\CircularProgressBar.xml
 G:\Hello World !\C# projects\OS\OS\bin\Debug\WinFormAnimation.xml
-G:\Hello World !\C# projects\OS\OS\obj\Debug\OS.csprojResolveAssemblyReference.cache
 G:\Hello World !\C# projects\OS\OS\bin\Debug\ReactiveAnimation.dll
 G:\Hello World !\C# projects\OS\OS\bin\Debug\System.Reactive.Core.dll
 G:\Hello World !\C# projects\OS\OS\bin\Debug\System.Reactive.Interfaces.dll
@@ -26,3 +25,4 @@ G:\Hello World !\C# projects\OS\OS\bin\Debug\System.Reactive.Interfaces.xml
 G:\Hello World !\C# projects\OS\OS\bin\Debug\System.Reactive.Linq.xml
 G:\Hello World !\C# projects\OS\OS\bin\Debug\System.Reactive.PlatformServices.xml
 G:\Hello World !\C# projects\OS\OS\bin\Debug\System.Reactive.Windows.Forms.xml
+G:\Hello World !\C# projects\OS\OS\obj\Debug\OS.csprojResolveAssemblyReference.cache
